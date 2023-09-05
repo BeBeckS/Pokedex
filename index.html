@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+/* global css */
+/* Definindo uma regra geral para todos os elementos */
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilizando o corpo (body) da página */
+body {
+    background-color: #ff0000;
+    margin: auto;
+}
+footer {
+    background-color: #ffea00;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    padding: .25rem .5rem;
+    margin: .25rem 0;
+    font-size: 15px;
+    border: none;
+  }
+  h1{
+    padding: 15px 50px;
+    margin: .25rem 0;
+    font-size: 60px;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: 2px solid #000000;
+    border-radius: 1rem;
+ } 
+  /* Estilizando a área de conteúdo principal (content) */
+  .content {
+    width: 100%;
+    padding: 1rem;
+
+    background-image: url('https://st2.depositphotos.com/3213441/12022/v/600/depositphotos_120226584-stock-illustration-pokemon-go-pokeball-seamless-texture.jpg');
+
+    /* background-color: #ffffff; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra sutil */
+}
+
+/* Estilos específicos para telas maiores (992px ou mais) */
+@media screen and (min-width: 992px) {
+    .content {
+        max-width: 992px;
+        margin: 1rem auto;
+        border-radius: 1rem;
+        height: auto; /* Removi a definição de altura fixa */
+    }
+}
+/* Pokedex css */
+.pokemons {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+   
+}
+
+.normal {
+    background-color: #a6a877;
+}
+
+.grass {
+    background-color: #77c850;
+}
+
+.fire {
+    background-color: #ee7f30;
+}
+
+.water {
+    background-color: #678fee;
+}
+
+.electric {
+    background-color: #f7cf2e;
+}
+
+.ice {
+    background-color: #98d5d7;
+}
+
+.ground {
+    background-color: #dfbf69;
+}
+
+.flying {
+    background-color: #a98ff0;
+}
+
+.poison {
+    background-color: #a040a0;
+}
+
+.fighting {
+    background-color: #bf3029;
+}
+
+.psychic {
+    background-color: #f65687;
+}
+
+.dark {
+    background-color: #725847;
+}
+
+.rock {
+    background-color: #b8a137;
+}
+
+.bug {
+    background-color: #a8b720;
+}
+
+.ghost {
+    background-color: #6e5896;
+}
+
+.steel {
+    background-color: #b9b7cf;
+}
+
+.dragon {
+    background-color: #6f38f6;
+}
+
+.fairy {
+    background-color: #f9aec7;
+}
+
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    margin: .5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    transition: transform 0.2s ease-in-out; /* Adicione a transição de escala */
+}
+
+/* Quando o mouse passa por cima, aplique a escala */
+.pokemon:hover {
+    transform: scale(1.1);
+}
+
+/* Outros estilos de sua classe .pokemon */
+.pokemon .number {
+    color: #000;
+    opacity: .3;
+    text-align: right;
+    font-size: .625rem;
+}
+
+.pokemon .name {
+    text-transform: capitalize;
+    color: #fff;
+    margin-bottom: .25rem;
+}
+
+/* Restante dos estilos */
+
+
+.pokemon .detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pokemon .detail .types {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.pokemon .detail .types .type {
+    color: #fff;
+    padding: .25rem .5rem;
+    margin: .25rem 0;
+    font-size: .625rem;
+    border-radius: 1rem;
+    filter: brightness(1.1);
+    text-align: center;
+}
+
+.pokemon .detail img {
+    max-width: 100%;
+    height: 70px;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.pagination button {
+    padding: 15px 50px;
+    margin: .25rem 0;
+    font-size: 20px;
+    color: #fff;
+    background-color: #6c79db;
+    border: none;
+    border-radius: 1rem;
+}
+
+@media screen and (min-width: 380px) {
+    .pokemons {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .pokemons {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .pokemons {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+/* Em seu arquivo CSS */
+.search-container {
+    display: flex;
+    margin: 20px;
+}
+
+#search-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#search-button img {
+    vertical-align: middle;
+}
+
+
+    </style>
+    
+    <!-- <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="pokedex.css"> -->
+</head>
+
+<body>
+    <section class="content">
+        <h1>POKEDÉX</h1>
+
+        <ol id="pokemonList" class="pokemons">
+            <!-- ..... Pokemons aqui ..... -->
+        </ol>
+
+        <div class="pagination">
+            <button id="loadMoreButton" type="button">
+                VER MAIS
+            </button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Digite o Pokémon...">
+            <button id="search-button">
+                <img src="https://cdn-icons-png.flaticon.com/512/2052/2052715.png" alt="Lupa" width="20" height="20">
+
+
+            </button>
+        </div>
+        <div id="results"></div>
+       
+
+    </section>
+    <footer>
+
+        <p>&copy; 2023 Bernardo Beck. Todos os direitos reservados.</p>
+      </footer>
+    <!-- JS -->
+
+    <script src="pokemon-model.js"></script>
+    <script src="poke-api.js"></script>
+    <script src="main.js"></script>
+    <script src="search.js"></script>
+</body>
+
+</html>
